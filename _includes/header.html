@@ -1,0 +1,22 @@
+<header>
+  <nav>
+    <div class="nav-wrapper cyan darken-1">
+        <div class="container">
+          <a href="{{ "/" | relative_url }}" class="brand-logo">Sam Meech-Ward</a>
+          <ul class="right hide-on-med-and-down">
+            <li class="projects-page-nav-link"><a href="{{ '/projects' | relative_url }}">Projects</a></li>
+            <li><a href="https://docs.google.com/document/d/1nAM8z5uRtp9SLbEPHURWUCaIKBDPAIv4CAqXQBPQr7M/edit?usp=sharing">Resume</a></li>
+          </ul>
+        </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Navigation action script
+  const pageTitle = "{{ page.title }}";
+  const selectedNavItem = document.querySelector(`nav li.${pageTitle.toLowerCase()}-page-nav-link`);
+  if (selectedNavItem) {
+    selectedNavItem.classList.add('active');
+  }
+</script> 

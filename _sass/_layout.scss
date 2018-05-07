@@ -1,0 +1,27 @@
+// body {
+//   display: flex;
+//   min-height: 100vh;
+//   flex-direction: column;
+// }
+
+// main {
+//   flex: 1 0 auto;
+// }
+
+p, table {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 40px;
+}
+
+.profile-image-container {
+  // max-width: 50%;
+  // width: 200px;
+  // float: left;
+  img {
+    // width: 100%;
+    width: 300px;
+  }
+}
