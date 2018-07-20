@@ -1,7 +1,8 @@
 ---
 layout: page
-title: Projects
+title: Other Projects
 permalink: /projects
+class: projects
 ---
 
 ### Burp and Fart Piano

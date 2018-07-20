@@ -1,7 +1,8 @@
 ---
 layout: all-posts
 title: Blog
-permalink: /all-posts
+permalink: /blog
+class: blog
 ---
 
 # 🤗

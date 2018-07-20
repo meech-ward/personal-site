@@ -2,6 +2,7 @@
 layout: page
 title: Sam Meech-Ward
 permalink: /
+class: index
 ---
 
 <p class="center profile-image-container"><img class="profile-image circle z-depth-3" src="{{ "/assets/images/me.jpg" | relative_url }}" /></p>
@@ -16,7 +17,7 @@ Advanced | Good | Good Enough
  Swift | SQL | bash
  JavaScript | jQuery | PHP
  iOS | Node.js | React
- Unit Testing | Architecture | Raspberry Pi
+ Unit Testing | | Raspberry Pi
   | | Arduino
   | | Vagrant, Docker, & Linux
 
