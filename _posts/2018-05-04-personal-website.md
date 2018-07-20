@@ -1,8 +1,8 @@
 ---
-layout: post
+layout: blog-post
 title: "Personal Websites"
 date: 2018-05-04 12:00:00 -0700
-categories: Rants
+category: Rants
 ---
 
 Building a personal website is, for some reason, a really wierd thing to do. Ask me to build a website for your new startup "Uber for vegan cats" and we can get down to business talking about features. But ask me to build myself a personal website, and... 😳
