@@ -1,12 +1,13 @@
-// body {
-//   display: flex;
-//   min-height: 100vh;
-//   flex-direction: column;
-// }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-size: 20px;
+}
 
-// main {
-//   flex: 1 0 auto;
-// }
+main {
+  flex: 1 0 auto;
+}
 
 p, table {
   font-size: 20px;
@@ -14,6 +15,14 @@ p, table {
 
 h3 {
   font-size: 40px;
+}
+
+nav {
+  ul {
+    a {
+      font-size: 18px;
+    }
+  } 
 }
 
 .profile-image-container {
