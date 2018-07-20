@@ -1,8 +1,7 @@
-# source: _pages
+source: .
 include: [_pages]
 destination: docs
-baseurl: "personal-site"
-# baseurl: ""
+baseurl: ""
 url: ""
 
 # Build settings
