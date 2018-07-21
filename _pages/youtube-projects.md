@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Youtube Projects
+title: YouTube Projects
 permalink: /youtube-projects
 class: youtube-projects
 ---
 
-### Let's build a temperature
+{%- include all-youtube-posts.html -%}

@@ -2,29 +2,10 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  font-size: 20px;
 }
 
 main {
   flex: 1 0 auto;
-}
-
-p, table {
-  font-size: 20px;
-}
-
-h3 {
-  font-size: 40px;
-}
-
-header {
-  nav {
-    ul {
-      a {
-        font-size: 18px;
-      }
-    } 
-  }
 }
 
 .profile-image-container {
@@ -36,3 +17,82 @@ header {
     width: 300px;
   }
 }
+
+.container {
+  max-width: 1000px;
+}
+
+// h1 { font-size: 4.2rem; line-height: 110%; margin: 2.8rem 0 1.68rem 0; }
+
+h1 { font-size: 3.56rem; line-height: 110%; margin: 2.3733333333rem 0 1.424rem 0; }
+
+h2 { font-size: 2.92rem; line-height: 110%; margin: 1.9466666667rem 0 1.168rem 0; }
+
+h3 { font-size: 2.28rem; line-height: 110%; margin: 1.52rem 0 0.912rem 0; }
+
+h4 { font-size: 1.64rem; line-height: 110%; margin: 1.0933333333rem 0 0.656rem 0; }
+
+h5 { font-size: 1.15rem; line-height: 110%; margin: 0.7666666667rem 0 0.46rem 0; }
+
+
+// @media (min-width: 600px) {
+//   // main {
+//   //   font-size: 18px;
+//   // }
+//   // p, table {
+//   //   font-size: 20px;
+//   // }
+//   // h3 {
+//   //   font-size: 30px;
+//   // }
+//   // h1 {
+//   //   font-size: 50px;
+//   // }
+//   // h2 {
+//   //   font-size: 40px;
+//   // }
+
+//   .container {
+//     max-width: 1000px;
+//   }
+
+//   header {
+//     nav {
+//       ul {
+//         a {
+//           font-size: 18px;
+//         }
+//       } 
+//     }
+//   }
+// }
+
+// @media (max-width: 599px) {
+
+//   h3 {
+//     font-size: 20px;
+//   }
+//   h1 {
+//     font-size: 30px;
+//   }
+//   h2 {
+//     font-size: 25px;
+//   }
+
+//   .container {
+//     max-width: 1000px;
+//   }
+
+//   header {
+//     nav {
+//       ul {
+//         a {
+//           font-size: 18px;
+//         }
+//       } 
+//     }
+//   }
+// }
+
+
+

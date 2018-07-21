@@ -7,6 +7,15 @@ url: ""
 # Build settings
 markdown: kramdown
 
+# Collections
+
+collections_dir: collections
+
+collections:
+    youtube_projects:
+        class: youtube-projects
+        output: true
+
 
 sass:
     sass_dir: _sass
