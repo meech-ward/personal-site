@@ -2,7 +2,9 @@
   <nav>
     <div class="nav-wrapper cyan darken-1">
         <div class="container">
-          <a href="{{ "/" | relative_url }}" class="brand-logo">Sam Meech-Ward</a>
+          <a href="{{ "/" | relative_url }}" class="brand-logo hide-on-small-only">Sam Meech-Ward</a>
+          <a href="{{ "/" | relative_url }}" class="brand-logo hide-on-med-and-up">Sam</a>
+          <a href="#" data-target="mobile-nav" class="sidenav-trigger right waves-effect waves-light btn-flat"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
               <li class="youtube-projects-page-nav-link"><a href="{{ '/youtube-projects' | relative_url }}">Youtube Projects</a></li>
               <li class="projects-page-nav-link"><a href="{{ '/projects' | relative_url }}">Other Projects</a></li>
@@ -13,6 +15,13 @@
     </div>
   </nav>
 </header>
+
+  <ul class="sidenav" id="mobile-nav">
+      <li class="youtube-projects-page-nav-link"><a href="{{ '/youtube-projects' | relative_url }}">Youtube Projects</a></li>
+      <li class="projects-page-nav-link"><a href="{{ '/projects' | relative_url }}">Other Projects</a></li>
+      <li class="blog-page-nav-link"><a href="{{ '/blog' | relative_url }}">Blog</a></li>
+      <li class="about-page-nav-link"><a href="{{ '/about' | relative_url }}">About</a></li>
+  </ul>
 
 <script>
   window.pageClass = "{{ page.class }}";

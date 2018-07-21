@@ -16,6 +16,11 @@ function resizeYoutubeVideos() {
   videos.forEach(resizeYoutubeVideo);
 }
 
+function setupSidenav() {
+  const elems = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(elems);
+}
+
 window.addEventListener('resize', function(event) {
   resizeYoutubeVideos();
 });
@@ -23,4 +28,5 @@ window.addEventListener('resize', function(event) {
 document.addEventListener("DOMContentLoaded", function(event) {
   setupNavigationBarHighlighting();
   resizeYoutubeVideos();
+  setupSidenav();
 });
