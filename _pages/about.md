@@ -38,3 +38,13 @@ After Objective-C my strongest language is Swift, followed by JavaScript. These 
 * raspberry pi arduino
 * languages
 * 
+
+### My Skills
+
+Advanced       | Good           | Good Enough
+---------------|----------------|---------------
+ Objective-C   | Git            | C/C++
+ Swift         | SQL            | bash
+ JavaScript    | jQuery         | Linux Sys Admin
+ iOS           | Node.js        | React
+ Unit Testing  |                | Raspberry Pi
