@@ -8,6 +8,26 @@ main {
   flex: 1 0 auto;
 }
 
+header {
+  nav {
+    .sidenav-trigger {
+      margin: 0;
+    }
+  }
+}
+
+#mobile-nav {
+  .nav-header {
+    // padding-top: 8px;
+    .brand-logo {
+      font-size: 1rem;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+
 .profile-image-container {
   max-width: 100%;
   // width: 200px;
