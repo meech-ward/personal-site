@@ -12,15 +12,13 @@ My name is Sam Meech-Ward and I'm the Head iOS Instructor at [Lighthouse Labs](h
 
 ### My Skills
 
-Advanced | Good | Good Enough
----------|----------|---------
- Objective-C | Git | C/C++
- Swift | SQL | bash
- JavaScript | jQuery | PHP
- iOS | Node.js | React
- Unit Testing | | Raspberry Pi
-  | | Arduino
-  | | Vagrant, Docker, & Linux
+Advanced       | Good           | Good Enough
+---------------|----------------|---------------
+ Objective-C   | Git            | C/C++
+ Swift         | SQL            | bash
+ JavaScript    | jQuery         | Linux Sys Admin
+ iOS           | Node.js        | React
+ Unit Testing  |                | Raspberry Pi
 
 
 
