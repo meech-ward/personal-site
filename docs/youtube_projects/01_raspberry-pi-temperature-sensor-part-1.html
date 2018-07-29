@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="/assets/js/materialize.min.js"></script>
+  <script src="/assets/js/site.js"></script>
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+  <title>Let&#39;s Build a Temperature Sensor with a Raspberry Pi - Part 1</title>
+</head>
+<body><header>
+  <nav>
+    <div class="nav-wrapper cyan darken-1">
+        <div class="container">
+          <a href="/" class="brand-logo hide-on-small-only">Sam Meech-Ward</a>
+          <a href="/" class="brand-logo hide-on-med-and-up">Sam</a>
+          <ul class="right hide-on-med-and-down">
+              <li class="youtube-projects-page-nav-link"><a href="/youtube-projects">Youtube Projects</a></li>
+              <li class="projects-page-nav-link"><a href="/projects">Other Projects</a></li>
+              <!-- <li class="blog-page-nav-link"><a href="/blog">Blog</a></li>
+              <li class="about-page-nav-link"><a href="/about">About</a></li> -->
+          </ul>
+        </div>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger right waves-effect waves-light btn-flat"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</header>
+
+<ul class="sidenav" id="mobile-nav">
+  <li><nav><div class="nav-header cyan darken-1 nav-wrapper">
+      <div class="container">
+          <a href="/" class="brand-logo center">Sam Meech-Ward</a>
+          <!-- <a href="/" class="brand-logo hide-on-med-and-up">Sam</a> -->
+        </div>
+    <!-- <p class="center"><a href="/">Sam Meech-Ward</a></p> -->
+  </div></nav></li>
+  <li class="youtube-projects-page-nav-link"><a href="/youtube-projects">Youtube Projects</a></li>
+  <li class="projects-page-nav-link"><a href="/projects">Other Projects</a></li>
+  <!-- <li class="blog-page-nav-link"><a href="/blog">Blog</a></li>
+  <li class="about-page-nav-link"><a href="/about">About</a></li> -->
+</ul>
+
+<script>
+  window.pageClass = "";
+</script> <main class="page-content container">
+      <div class="wrapper">
+        <article class="post youtube-post">
+
+  <header class="post-header">
+    <h1 class="post-title hide-on-small-only">Let&#39;s Build a Temperature Sensor with a Raspberry Pi - Part 1</h1>
+    <h1 class="post-title hide-on-med-and-up"> Raspberry Pi Temperature Sensor - Part 1</h1>
+  </header>
+
+  <div class="post-content">
+    <p>This is a two part project. In part one, we connected a raspberry pi to a temperature &amp; humidity sensor so that we could read the current temperature. In <a href="/youtube_projects/02_raspberry-pi-temperature-sensor-part-2.html">Part 2</a>, we setup the pi to emit the temperature and humidity data using BLE. We also made an iPhone app that can read that data.</p>
+
+<h2 id="youtube-video">YouTube Video</h2>
+
+<iframe class="youtube-video" width="100%" height="400" src="https://www.youtube.com/embed/va5JBp5LVE4 " frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+
+<h2 id="how-to-build">How To Build</h2>
+
+<h3 id="required-hardware">Required Hardware</h3>
+
+<ul>
+  <li>Raspberry pi with built in bluetooth. I used a 3b+.</li>
+  <li><a href="https://www.adafruit.com/product/385">DHT22 temperature-humidity sensor</a></li>
+</ul>
+
+<h3 id="steps">Steps</h3>
+
+<div class="action"><p>Install <a href="https://www.raspberrypi.org/downloads/raspbian/">raspbian</a> onto the raspberry pi.</p>
+</div>
+
+<div class="action"><p>Wire up the pi to the sensor.</p>
+</div>
+
+<p>You can use the diagram and instructions on this page <a href="https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor">https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor</a>.</p>
+
+<ul>
+  <li>Plug the left pin (red pin) into 5v.</li>
+  <li>Plug the right pin (black pin) into ground.</li>
+  <li>Plug the inner left pin (green pin) into a gpio pin, I chose 4.</li>
+</ul>
+
+<p><a href="https://www.raspberrypi.org/documentation/usage/gpio/">Raspberry pi pins</a></p>
+
+<div class="action"><p>Plug in the pi, and connect to it using ssh.</p>
+</div>
+
+<p>I used the following link to do this before I plugged in the pi: <a href="https://raspberrypi.stackexchange.com/questions/10251/prepare-sd-card-for-wifi-on-headless-pi">Prepare SD card for Wifi on Headless Pi</a>.</p>
+
+<p>Here’s the official documentation on how to connect to a pi using ssh: <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/">https://www.raspberrypi.org/documentation/remote-access/ssh/</a></p>
+
+<div class="action"><p>Install node on the pi.</p>
+</div>
+
+<p>You can use <a href="https://github.com/creationix/nvm">nvm Node Version Manager</a> to do this.</p>
+
+<p>You might need to run <code class="highlighter-rouge">source ~/.bashrc</code> before nvm works.</p>
+
+<div class="action"><p>Make sure node is working on the pi.</p>
+</div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> cowsay
+cowsay hi
+</code></pre></div></div>
+
+<div class="action"><p>Do the setup for <a href="https://www.npmjs.com/package/node-dht-sensor"><code>node-dht-sensor</code></a></p>
+</div>
+
+<p>Before you can use the <code class="highlighter-rouge">node-dht-sensor</code> module, you have to do some setup. You can follow the instructions on npm, but here’s what I did. On the pi, run the following code:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.56.tar.gz
+<span class="nb">tar </span>zxvf bcm2835-1.56.tar.gz
+<span class="nb">cd </span>bcm2835-1.56
+./configure
+make
+<span class="nb">sudo </span>make check
+<span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<div class="action"><p>Make the app and write the code.</p>
+</div>
+
+<ul>
+  <li>Create a new node project, so just <code class="highlighter-rouge">mkdir sensor</code> or something.</li>
+  <li>Inside that directory, <code class="highlighter-rouge">npm install node-dht-sensor</code>, might take a while.</li>
+  <li>I’ve included my code below, you can just copy and paste it.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sensor</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-dht-sensor'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">sensorNumber</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">pinNumber</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="nx">sensor</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="nx">sensorNumber</span><span class="p">,</span> <span class="nx">pinNumber</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">temperature</span><span class="p">,</span> <span class="nx">humidity</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"AHHHHHHHH error"</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'temp: '</span> <span class="o">+</span> <span class="nx">temperature</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'°C, '</span> <span class="o">+</span> <span class="s1">'humidity: '</span> <span class="o">+</span> <span class="nx">humidity</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>  <span class="s1">'%'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<div class="action"><p>Run the app.</p>
+</div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node app.js
+</code></pre></div></div>
+
+<p>🤗</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="page-footer cyan darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text"></h5>
+          <p class="grey-text text-lighten-4"></p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/sam-meech-ward-a485ab1a/">Linkedin</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://gist.github.com/meech-ward/">Github</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/channel/UC6aTLuI_j4-0wiDSzmaPctQ">YouTube</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://docs.google.com/document/d/1nAM8z5uRtp9SLbEPHURWUCaIKBDPAIv4CAqXQBPQr7M/edit?usp=sharing">Resume</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://lighthouselabs.ca/blog/teacher-feature-sam-meech-ward">Teacher Feature</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://lighthouselabs.ca/blog/farts-and-starts-the-story-of-sam-meech-ward-s-first-successful-app">Farts and Starts</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Sam Meech-Ward
+      <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+      </div>
+    </div>
+  </footer></body>
+
+</html>
