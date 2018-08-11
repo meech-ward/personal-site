@@ -30,7 +30,7 @@ I used [bleno](https://github.com/noble/bleno), a Node.js module for implementin
 
 {% action
 Use the following command to install the bleno system prerequisites on your raspberry pi:
-}
+%}
 
 ```shell
 sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
@@ -38,7 +38,7 @@ sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
 
 {% action
 Add bleno to your project.
-}
+%}
 
 ```shell
 npm install bleno
@@ -46,7 +46,7 @@ npm install bleno
 
 {% action
 Add the following code to your project. Probably in a new file, but that's up to you:
-}
+%}
 
 ```js
 const bleno = require('bleno');
@@ -89,7 +89,7 @@ To start advertising, all we have to do is call `startAdvertising` with a 31 byt
 
 {% action
 Add the following function to your project:
-}
+%}
 
 ```js
 /**
@@ -159,9 +159,9 @@ Then you can use an app like [LightBlue® Explorer](https://itunes.apple.com/ca/
 
 To interact with other ble devices from an iOS app, you will have to use the `CoreBluetooth` framework.
 
-{%
+{% action
 Create a new `TemperatureDetector` class, and add the following code:
-}
+%}
 
 ```swift
 import Foundation
