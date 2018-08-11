@@ -154,3 +154,67 @@ startAdvertising(buffer);
 Then you can use an app like [LightBlue® Explorer](https://itunes.apple.com/ca/app/lightblue-explorer/id557428110?mt=8) to verify that it's advertising. 
 
 #### Bluetooth Central (iOS)
+
+**BLE apps must run this on a real iPhone, not the simulator!**
+
+To interact with other ble devices from an iOS app, you will have to use the `CoreBluetooth` framework.
+
+{%
+Create a new `TemperatureDetector` class, and add the following code:
+}
+
+```swift
+import Foundation
+import CoreBluetooth
+
+class TemperatureDetector: NSObject {
+  
+  // The Central Manager is what will listen for advertising ble devices.
+  var myCentralManager: CBCentralManager!
+  
+  override init() {
+    super.init()
+    myCentralManager = CBCentralManager(delegate: self, queue: nil)
+  }
+
+}
+
+extension TemperatureDetector: CBCentralManagerDelegate {
+  func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    // If ble is supported and available, start scanning; otherwise, stop scanning
+    if central.state == .poweredOn {
+      myCentralManager.scanForPeripherals(withServices: nil, options: nil)
+    } else {
+      myCentralManager.stopScan()
+    }
+  }
+  
+  func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    
+    // Only continue if we find a peripheral with the name "Sensei"
+    // Change this to whatever you've called your peripheral
+    guard let name = advertisementData["kCBAdvDataLocalName"] as? String, name == "Sensei" else {
+      return
+    }
+    
+    // Get the Manufacturer Data, that's where we stored the temperature and humidity
+    guard let manData = advertisementData["kCBAdvDataManufacturerData"] as? Data else {
+      return
+    }
+    
+    // The data was stored in binary, now we have to read that data as an 8 byte double.
+    // Temperature is the first 8 bytes
+    let temperature: Double = manData.subdata(in: 0..<8).withUnsafeBytes { $0.pointee }
+    // Humidity is the second 8 bytes
+    let humidity: Double = manData.subdata(in: 8..<16).withUnsafeBytes { $0.pointee }
+    
+    print("Temperature: \(temperature), Humidity: \(humidity)")
+  } 
+}
+```
+
+When you create a new instance of `TemperatureDetector`, it will start scanning for BLE peripherals. If it finds the temperature sensor "Sensei", it will print out the temperature and humidity data. 
+
+Here's my complete iPhone app: https://github.com/Sam-Meech-Ward/Sensei-Central-iOS
+
+🤗
