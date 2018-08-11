@@ -84,7 +84,7 @@ Make the app and write the code.
 
 - Create a new node project, so just `mkdir sensor` or something.
 - Inside that directory, `npm install node-dht-sensor`, might take a while.
-- I've included my code below, you can just copy and paste it. 
+- I've included my code below, you can just copy and paste it: 
 
 ```js
 const sensor = require('node-dht-sensor');
