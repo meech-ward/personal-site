@@ -1,6 +1,7 @@
 ---
 layout: youtube-post
 title: "Let's Build a Temperature Sensor with a Raspberry Pi Part 2"
+slug: "raspberry-pi-temperature-sensor-part-2"
 ---
 
 {:.flow-text}

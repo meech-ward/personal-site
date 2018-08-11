@@ -15,7 +15,7 @@ collections:
     youtube_projects:
         class: youtube-projects
         output: true
-
+        permalink: /youtube-projects/:title
 
 sass:
     sass_dir: _sass
