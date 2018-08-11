@@ -134,7 +134,7 @@ function advertisementData(temperature, humidity) {
 }
 ```
 
-This will create a new 31 byte buffer with temperature and humidity data assigned to the Manufacturer Specific Data. https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile
+This will create a new 31 byte buffer with temperature and humidity data assigned to the Manufacturer Specific Data. <https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile>
 
 ```
 Manufacturer Specific Data: 0xFF
@@ -149,7 +149,7 @@ const buffer = advertisementData(24.4, 65.6);
 startAdvertising(buffer);
 ```
 
-> I'll let you figure out how you want to connect this to the real temperature data. My version of the peripheral code for this can be found here: https://github.com/Sam-Meech-Ward/Sensei-Peripheral-JS
+> I'll let you figure out how you want to connect this to the real temperature data. My version of the peripheral code for this can be found here: <https://github.com/Sam-Meech-Ward/Sensei-Peripheral-JS>
 
 Then you can use an app like [LightBlue® Explorer](https://itunes.apple.com/ca/app/lightblue-explorer/id557428110?mt=8) to verify that it's advertising. 
 
@@ -215,6 +215,6 @@ extension TemperatureDetector: CBCentralManagerDelegate {
 
 When you create a new instance of `TemperatureDetector`, it will start scanning for BLE peripherals. If it finds the temperature sensor "Sensei", it will print out the temperature and humidity data. 
 
-Here's my complete iPhone app: https://github.com/Sam-Meech-Ward/Sensei-Central-iOS
+Here's my complete iPhone app: <https://github.com/Sam-Meech-Ward/Sensei-Central-iOS>
 
 🤗
