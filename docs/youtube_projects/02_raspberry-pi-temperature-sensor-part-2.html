@@ -89,6 +89,194 @@
 <div class="action"><p>First, follow the instructions in <a href="/youtube_projects/01_raspberry-pi-temperature-sensor-part-1.html">Part 1</a></p>
 </div>
 
+<p>The raspberry pi will be acting as the bluetooth peripheral (the thing advertising it’s data). Later on, we will setup the iPhone app which acts as the central device (the thing that reads data from the peripheral)</p>
+
+<h4 id="bluetooth-peripheral-raspberry-pi">Bluetooth Peripheral (Raspberry Pi)</h4>
+
+<p>I used <a href="https://github.com/noble/bleno">bleno</a>, a Node.js module for implementing BLE (Bluetooth Low Energy) peripherals. Before you can use bleno, you need to install some prerequisite software.</p>
+
+<div class="action"><p>Use the following command to install the bleno system prerequisites on your raspberry pi:</p>
+</div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>bluetooth bluez libbluetooth-dev libudev-dev
+</code></pre></div></div>
+
+<div class="action"><p>Add bleno to your project.</p>
+</div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>bleno
+</code></pre></div></div>
+
+<div class="action"><p>Add the following code to your project. Probably in a new file, but that’s up to you:</p>
+</div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">bleno</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bleno'</span><span class="p">);</span>
+
+<span class="c1">// bleno.state must be poweredOn before advertising is started. </span>
+<span class="kd">let</span> <span class="nx">state</span><span class="p">;</span>
+<span class="nx">bleno</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'stateChange'</span><span class="p">,</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">state</span> <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">state</span> <span class="o">!==</span> <span class="s1">'poweredOn'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bleno</span><span class="p">.</span><span class="nx">stopAdvertising</span><span class="p">();</span>    
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Start or restart advertising with custom data.
+ * @param {A 31 byte buffer compatible with the ble advertising spec} buffer 
+ */</span>
+<span class="kd">function</span> <span class="nx">startAdvertising</span><span class="p">(</span><span class="nx">buffer</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">bleno</span><span class="p">.</span><span class="nx">stopAdvertising</span><span class="p">();</span>  
+    <span class="k">if</span> <span class="p">(</span><span class="nx">state</span> <span class="o">!==</span> <span class="s1">'poweredOn'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"not powered on"</span><span class="p">));</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">bleno</span><span class="p">.</span><span class="nx">startAdvertisingWithEIRData</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span> 
+      <span class="nx">resolve</span><span class="p">(</span><span class="s2">"😎"</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To start advertising, all we have to do is call <code class="highlighter-rouge">startAdvertising</code> with a 31 byte buffer. If you’re interested, heres some data on how the 31 bytes should be setup.</p>
+
+<ul>
+  <li><a href="https://docs.mbed.com/docs/ble-intros/en/latest/Advanced/CustomGAP/">Custom GAP advertising packet</a></li>
+  <li><a href="https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile">GAP Data Types</a></li>
+</ul>
+
+<div class="action"><p>Add the following function to your project:</p>
+</div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Create a new 31 byte buffer with temperature and humidity data.
+ * For more information about how this function works, check out the following links:
+ * https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile
+ * https://www.silabs.com/community/wireless/bluetooth/knowledge-base.entry.html/2017/02/10/bluetooth_advertisin-hGsf
+ * @param {A Double} temperature 
+ * @param {A Double} humidity 
+ */</span>
+<span class="kd">function</span> <span class="nx">advertisementData</span><span class="p">(</span><span class="nx">temperature</span><span class="p">,</span> <span class="nx">humidity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">temperature</span> <span class="o">!==</span> <span class="s1">'number'</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">humidity</span> <span class="o">!==</span> <span class="s1">'number'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="s1">'a fit'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nx">alloc</span><span class="p">(</span><span class="mi">31</span><span class="p">);</span> <span class="c1">// maximum 31 bytes</span>
+
+  <span class="kd">let</span> <span class="nx">bufferIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c1">// flags</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeUInt8</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeUInt8</span><span class="p">(</span><span class="mh">0x01</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeUInt8</span><span class="p">(</span><span class="mh">0x06</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="o">++</span><span class="p">);</span>
+
+  <span class="c1">// Complete Local Name</span>
+  <span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">"Sensei"</span> <span class="c1">// Change this</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeUInt8</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeUInt8</span><span class="p">(</span><span class="mh">0x09</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="p">);</span>
+  <span class="nx">bufferIndex</span> <span class="o">+=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  
+  <span class="c1">// Manufacturer Specific Data</span>
+  <span class="c1">// 4 bytes for each number</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeUInt8</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">8</span><span class="o">+</span><span class="mi">8</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeUInt8</span><span class="p">(</span><span class="mh">0xFF</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="o">++</span><span class="p">);</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeDoubleLE</span><span class="p">(</span><span class="nx">temperature</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="p">);</span>
+  <span class="nx">bufferIndex</span><span class="o">+=</span><span class="mi">8</span><span class="p">;</span>
+  <span class="nx">buffer</span><span class="p">.</span><span class="nx">writeDoubleLE</span><span class="p">(</span><span class="nx">humidity</span><span class="p">,</span> <span class="nx">bufferIndex</span><span class="p">);</span>
+  <span class="nx">bufferIndex</span><span class="o">+=</span><span class="mi">8</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">buffer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This will create a new 31 byte buffer with temperature and humidity data assigned to the Manufacturer Specific Data. <a href="https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile">https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Manufacturer Specific Data: 0xFF
+temperature: 8 byte little endian double
+humidity: 8 byte little endian double
+</code></pre></div></div>
+
+<p>To start advertising temperature and humidity, you could call the function like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="nx">advertisementData</span><span class="p">(</span><span class="mf">24.4</span><span class="p">,</span> <span class="mf">65.6</span><span class="p">);</span>
+<span class="nx">startAdvertising</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>I’ll let you figure out how you want to connect this to the real temperature data. My version of the peripheral code for this can be found here: <a href="https://github.com/Sam-Meech-Ward/Sensei-Peripheral-JS">https://github.com/Sam-Meech-Ward/Sensei-Peripheral-JS</a></p>
+</blockquote>
+
+<p>Then you can use an app like <a href="https://itunes.apple.com/ca/app/lightblue-explorer/id557428110?mt=8">LightBlue® Explorer</a> to verify that it’s advertising.</p>
+
+<h4 id="bluetooth-central-ios">Bluetooth Central (iOS)</h4>
+
+<p><strong>BLE apps must run this on a real iPhone, not the simulator!</strong></p>
+
+<p>To interact with other ble devices from an iOS app, you will have to use the <code class="highlighter-rouge">CoreBluetooth</code> framework.</p>
+
+<div class="action"><p>Create a new <code>TemperatureDetector</code> class, and add the following code:</p>
+</div>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Foundation</span>
+<span class="kd">import</span> <span class="kt">CoreBluetooth</span>
+
+<span class="kd">class</span> <span class="kt">TemperatureDetector</span><span class="p">:</span> <span class="kt">NSObject</span> <span class="p">{</span>
+  
+  <span class="c1">// The Central Manager is what will listen for advertising ble devices.</span>
+  <span class="k">var</span> <span class="nv">myCentralManager</span><span class="p">:</span> <span class="kt">CBCentralManager</span><span class="o">!</span>
+  
+  <span class="k">override</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+    <span class="n">myCentralManager</span> <span class="o">=</span> <span class="kt">CBCentralManager</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">queue</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">TemperatureDetector</span><span class="p">:</span> <span class="kt">CBCentralManagerDelegate</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">centralManagerDidUpdateState</span><span class="p">(</span><span class="n">_</span> <span class="nv">central</span><span class="p">:</span> <span class="kt">CBCentralManager</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// If ble is supported and available, start scanning; otherwise, stop scanning</span>
+    <span class="k">if</span> <span class="n">central</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="o">.</span><span class="n">poweredOn</span> <span class="p">{</span>
+      <span class="n">myCentralManager</span><span class="o">.</span><span class="nf">scanForPeripherals</span><span class="p">(</span><span class="nv">withServices</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">myCentralManager</span><span class="o">.</span><span class="nf">stopScan</span><span class="p">()</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="kd">func</span> <span class="nf">centralManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">central</span><span class="p">:</span> <span class="kt">CBCentralManager</span><span class="p">,</span> <span class="n">didDiscover</span> <span class="nv">peripheral</span><span class="p">:</span> <span class="kt">CBPeripheral</span><span class="p">,</span> <span class="nv">advertisementData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">],</span> <span class="n">rssi</span> <span class="kt">RSSI</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="c1">// Only continue if we find a peripheral with the name "Sensei"</span>
+    <span class="c1">// Change this to whatever you've called your peripheral</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">name</span> <span class="o">=</span> <span class="n">advertisementData</span><span class="p">[</span><span class="s">"kCBAdvDataLocalName"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span><span class="p">,</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"Sensei"</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Get the Manufacturer Data, that's where we stored the temperature and humidity</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">manData</span> <span class="o">=</span> <span class="n">advertisementData</span><span class="p">[</span><span class="s">"kCBAdvDataManufacturerData"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">Data</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// The data was stored in binary, now we have to read that data as an 8 byte double.</span>
+    <span class="c1">// Temperature is the first 8 bytes</span>
+    <span class="k">let</span> <span class="nv">temperature</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="n">manData</span><span class="o">.</span><span class="nf">subdata</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="mi">0</span><span class="o">..&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">withUnsafeBytes</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">pointee</span> <span class="p">}</span>
+    <span class="c1">// Humidity is the second 8 bytes</span>
+    <span class="k">let</span> <span class="nv">humidity</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="n">manData</span><span class="o">.</span><span class="nf">subdata</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="mi">8</span><span class="o">..&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">withUnsafeBytes</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">pointee</span> <span class="p">}</span>
+    
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Temperature: </span><span class="se">\(</span><span class="n">temperature</span><span class="se">)</span><span class="s">, Humidity: </span><span class="se">\(</span><span class="n">humidity</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>When you create a new instance of <code class="highlighter-rouge">TemperatureDetector</code>, it will start scanning for BLE peripherals. If it finds the temperature sensor “Sensei”, it will print out the temperature and humidity data.</p>
+
+<p>Here’s my complete iPhone app: <a href="https://github.com/Sam-Meech-Ward/Sensei-Central-iOS">https://github.com/Sam-Meech-Ward/Sensei-Central-iOS</a></p>
+
+<p>🤗</p>
 
   </div>
 
