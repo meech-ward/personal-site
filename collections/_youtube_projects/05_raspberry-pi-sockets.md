@@ -2,6 +2,7 @@
 layout: youtube-post
 title: "Using WebSockets to Control a Raspberry Pi"
 slug: "raspberry-pi-web-sockets"
+archived: true
 ---
 
 WebSockets
