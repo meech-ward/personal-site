@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124454815-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-124454815-2');
+  </script>
+
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="/assets/js/materialize.min.js"></script>
+  <script src="/assets/js/site.js"></script>
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+  <title>Making My First C Library</title>
+</head>
+<body><header>
+  <nav>
+    <div class="nav-wrapper cyan darken-1">
+        <div class="container">
+          <a href="/" class="brand-logo hide-on-small-only">Sam Meech-Ward</a>
+          <a href="/" class="brand-logo hide-on-med-and-up">Sam</a>
+          <ul class="right hide-on-med-and-down">
+              <li class="posts-page-nav-link"><a href="/posts">All Posts</a></li>
+              <li class="youtube-projects-page-nav-link"><a href="/youtube-projects">Youtube Projects</a></li>
+              <li class="projects-page-nav-link"><a href="/projects">Other Projects</a></li>
+              <!-- <li class="about-page-nav-link"><a href="/about">About</a></li> -->
+          </ul>
+        </div>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger right waves-effect waves-light btn-flat"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</header>
+
+<ul class="sidenav" id="mobile-nav">
+  <li><nav><div class="nav-header cyan darken-1 nav-wrapper">
+      <div class="container">
+          <a href="/" class="brand-logo center">Sam Meech-Ward</a>
+          <!-- <a href="/" class="brand-logo hide-on-med-and-up">Sam</a> -->
+        </div>
+    <!-- <p class="center"><a href="/">Sam Meech-Ward</a></p> -->
+  </div></nav></li>
+  <li class="posts-page-nav-link"><a href="/posts">All Posts</a></li>
+  <li class="youtube-projects-page-nav-link"><a href="/youtube-projects">Youtube Projects</a></li>
+  <li class="projects-page-nav-link"><a href="/projects">Other Projects</a></li>
+  <!-- <li class="blog-page-nav-link"><a href="/blog">Blog</a></li>
+  <li class="about-page-nav-link"><a href="/about">About</a></li> -->
+</ul>
+
+<script>
+  window.pageClass = "";
+</script> <main class="page-content container">
+      <div class="wrapper">
+        <article class="post blog-post">
+
+  <header class="post-header">
+    <h1 class="post-title hide-on-small-only">Making My First C Library</h1>
+    <h1 class="post-title hide-on-med-and-up">Making My First C Library</h1>
+  </header>
+
+  <div class="post-content">
+    <p>I’ve been playing around with <code class="highlighter-rouge">C</code> code the last couple of weekends. Specifically the <a href="https://trac.ffmpeg.org/wiki/Using%20libav*"><code class="highlighter-rouge">libav*</code> libraries from ffmpeg</a>. And it occurred to me that i’ve never made my own C library.</p>
+
+<p>This bugs me a little bit, because I prefer to make libraries when I build apps in languages like Swift and JavaScript. But I’ve never done this with <code class="highlighter-rouge">C</code>, probably because I rarely program in <code class="highlighter-rouge">C</code>, I mean why would I except for fun?</p>
+
+<p>So today, for fun, I’m going to make my first C library.</p>
+
+<blockquote>
+  <p>Note: I am not a professional <code class="highlighter-rouge">C</code> programmer, so my <code class="highlighter-rouge">C</code> code will probably not follow best practices.</p>
+</blockquote>
+
+<div class="action"><p>Check out the final code for this post: https://github.com/meech-ward/smw_socket</p>
+</div>
+
+<h2 id="unix-domain-socket-stream-server">Unix Domain Socket Stream Server</h2>
+
+<p>You can use Unix sockets to communicate between two different applications on the same machine, similar to how you would use sockets to communicate between two applications over TCP.</p>
+
+<p>Setting up a socket server in C isn’t super difficult, so I figure it’s a good starting point for creating a library. My goal is to make a library that makes setting up a Unix socket server using <code class="highlighter-rouge">&lt;sys/socket.h&gt;</code> feel more like setting up a socket server using Node’s <code class="highlighter-rouge">Net</code> library (https://nodejs.org/api/net.html).</p>
+
+<p>I mean, why not?</p>
+
+<h3 id="the-final-code">The Final Code</h3>
+
+<p>Here’s a look what its like to setup a unix domain socket client using my library:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "smw_socket.h"
+</span>
+<span class="kt">void</span> <span class="nf">onConnect</span><span class="p">(</span><span class="n">SMWUnixSocket</span> <span class="o">*</span><span class="n">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Connected to server</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">smw_unix_socket_send_data</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="s">"Hello"</span><span class="p">)</span> <span class="o">!=</span> <span class="n">SMWUnixServerSocketSendDataErrorNone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"Error sending data</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">onData</span><span class="p">(</span><span class="n">SMWUnixSocket</span> <span class="o">*</span><span class="n">socket</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dataSize</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Received data</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">onClose</span><span class="p">(</span><span class="n">SMWUnixSocket</span> <span class="o">*</span><span class="n">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Connection closed</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">SMWUnixSocket</span> <span class="o">*</span><span class="n">socket</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">filePath</span> <span class="o">=</span> <span class="s">"/tmp/socket_server"</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">smw_unix_client_socket_create</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">socket</span><span class="p">)</span> <span class="o">!=</span> <span class="n">SMWUnixClientSocketConnectErrorNone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"Error creating socket</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Connect to the server</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">smw_unix_client_socket_connect</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">on_connect</span><span class="p">,</span> <span class="n">on_data</span><span class="p">,</span> <span class="n">on_close</span><span class="p">)</span> <span class="o">!=</span> <span class="n">SMWUnixClientSocketConnectErrorNone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"Error creating connection</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Not too bad. Now compare that to the Node.js version:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">net</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'net'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/tmp/socket_server'</span><span class="p">);</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connect'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Connected to server</span>
+
+  <span class="c1">// Send some data to the server</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Received data from the server</span>
+<span class="p">});</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Connection closed</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>The plan was pretty simple, create a node like interface for C sockets.</p>
+
+<h3 id="errors">Errors</h3>
+
+<p>The first blocker I had was when handling errors. Handling errors in C has never really been done well, and I didn’t like the idea of using <code class="highlighter-rouge">errno</code> or just returning a number &lt; 0, so I just did what I would do in Swift and used error enums.</p>
+
+<p>Every function gets an accompanying enum that contains all of the possible errors that can occur in that function. That function then returns an option from the enum, which will hopefully be ErrorNone, which is 0.</p>
+
+<h3 id="writing-the-code">Writing the Code</h3>
+
+<p>Once I had the errors decision out of the way, the rest of the programming was pretty simple. I created all of the files for the library and just compiled them directly using a <code class="highlighter-rouge">test.c</code> file with a <code class="highlighter-rouge">main</code> function in it.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc <span class="nt">-g</span> <span class="k">*</span>.c <span class="nt">-o</span> <span class="nb">test</span>
+</code></pre></div></div>
+
+<p>I didn’t really run into any issues here.</p>
+
+<h3 id="makefile">Makefile</h3>
+
+<p>When I was ready to compile the code into a library and link against it, I just googled the correct <code class="highlighter-rouge">gcc</code> commands and ran them. There were a couple of commands so I just put them into a shell script so I could easily test it out and make changes quickly.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">LIBRARY_NAME</span><span class="o">=</span><span class="s2">"libsmw_socket.a"</span>
+
+<span class="c"># Build library</span>
+<span class="nb">echo</span> <span class="s2">"Building Library"</span>
+gcc <span class="nt">-g</span> <span class="nt">-c</span> <span class="k">*</span>.c
+ar r <span class="nv">$LIBRARY_NAME</span> <span class="k">*</span>.o
+<span class="nb">rm</span> <span class="k">*</span>.o
+
+<span class="c"># Build the examples</span>
+<span class="nb">echo</span> <span class="s2">"Building Examples"</span>
+gcc <span class="nt">-g</span> ./examples/client.c  <span class="nv">$LIBRARY_NAME</span> <span class="nt">-I</span><span class="nb">.</span> <span class="nt">-o</span> ./examples/client
+gcc <span class="nt">-g</span> ./examples/server.c  <span class="nv">$LIBRARY_NAME</span> <span class="nt">-I</span><span class="nb">.</span> <span class="nt">-o</span> ./examples/server
+</code></pre></div></div>
+
+<p>This works just fine, it compiles the source files into a library named <code class="highlighter-rouge">libsmw_socket.a</code> and them compiles the examples I had written. But this is not the <code class="highlighter-rouge">C</code> way of doing things. I shouldn’t have a bash script doing the compilation for me, I should have a Makefile doing it for me.</p>
+
+<p>Now, my experience with make and higher level tools like cmake is very limited, but I really wanted this to be complete with it’s own Makefile. This actually took way longer than expected because I had a hard time finding exactly what I needed on the internet. Every make tutorial or piece of documentation was either way too basic, the equivilent of running <code class="highlighter-rouge">gcc -g -c *.c</code>, or way too advanced, like only helpful if I was deciphering the Makefile for opencv or something.</p>
+
+<p>Anyway, in the end I read a chapter 28 of <a href="https://www.safaribooksonline.com/library/view/learn-c-the/9780133124385/">learn c the hard way</a> and I completed the Makefile:</p>
+
+<div class="language-make highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CC</span> <span class="o">=</span> gcc
+<span class="nv">CFLAGS</span><span class="o">=</span> <span class="nt">-g</span> <span class="nt">-I</span>./build/ <span class="nt">-I</span>./src/ <span class="nt">-Wall</span>
+
+<span class="nv">SOURCES</span><span class="o">=</span><span class="err">$</span><span class="o">(</span>wildcard src/<span class="k">*</span>.c<span class="o">)</span> 
+<span class="nv">OBJECTS</span><span class="o">=</span><span class="err">$</span><span class="o">(</span>patsubst %.c,%.o,<span class="nv">$(SOURCES)</span><span class="o">)</span>
+
+<span class="nv">TARGET</span><span class="o">=</span>build/libsmw_socket.a
+
+<span class="nl">all</span><span class="o">:</span> <span class="nf">$(TARGET) </span>
+
+<span class="nl">$(TARGET)</span><span class="o">:</span> <span class="nf">CFLAGS += -fPIC</span>
+
+<span class="nl">$(TARGET)</span><span class="o">:</span> <span class="nf">build $(OBJECTS)</span>
+	ar rcs <span class="nv">$@</span> <span class="nv">$(OBJECTS)</span>
+	ranlib <span class="nv">$@</span>
+
+<span class="nl">build</span><span class="o">:</span>
+	<span class="p">@</span><span class="nb">mkdir</span> <span class="nt">-p</span> build
+	<span class="p">@</span><span class="nb">mkdir</span> <span class="nt">-p</span> bin
+
+<span class="nl">examples</span><span class="o">:</span> <span class="nf">all</span>
+	<span class="nv">$(CC)</span> <span class="nv">$(CFLAGS)</span> examples/client.c  <span class="nv">$(TARGET)</span> <span class="nt">-o</span> bin/client_example
+	<span class="nv">$(CC)</span> <span class="nv">$(CFLAGS)</span> examples/server.c  <span class="nv">$(TARGET)</span> <span class="nt">-o</span> bin/server_example
+
+<span class="nl">clean</span><span class="o">:</span>
+	<span class="nb">rm</span> <span class="nt">-rf</span> build bin <span class="nv">$(OBJECTS)</span> <span class="nv">$(TESTS)</span>
+</code></pre></div></div>
+
+<p>It has separate options for compiling the library, the examples, and cleaning up. It’s exactly what I wanted for this project.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>In the end, I achieved what I set out to do, create a usable C library. Although this library is usable, it is in no way complete. It doesn’t handle all of the errors that could arise from using sockets, and absolutely no considerations for multithreading were taken into account. That being said, I am quite happy with this library and I might even use it in a project in the future.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="page-footer cyan darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text"></h5>
+          <p class="grey-text text-lighten-4"></p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/sam-meech-ward-a485ab1a/">Linkedin</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://gist.github.com/meech-ward/">Github</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/channel/UC6aTLuI_j4-0wiDSzmaPctQ">YouTube</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://docs.google.com/document/d/1nAM8z5uRtp9SLbEPHURWUCaIKBDPAIv4CAqXQBPQr7M/edit?usp=sharing">Resume</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://lighthouselabs.ca/blog/teacher-feature-sam-meech-ward">Teacher Feature</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://lighthouselabs.ca/blog/farts-and-starts-the-story-of-sam-meech-ward-s-first-successful-app">Farts and Starts</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Sam Meech-Ward
+      <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+      </div>
+    </div>
+  </footer></body>
+
+</html>
