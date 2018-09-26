@@ -16,6 +16,10 @@ collections:
         class: youtube-projects
         output: true
         permalink: /youtube-projects/:title
+    posts:
+        class: posts
+        output: true
+        permalink: /posts/:title
 
 sass:
     sass_dir: _sass
