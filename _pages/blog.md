@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Blog
-permalink: /blog
-class: blog
+title: All Posts
+permalink: /posts
+class: posts
 ---
 
 {%- include all-blog-posts.html -%}
