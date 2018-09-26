@@ -16,7 +16,7 @@ So today, for fun, I'm going to make my first C library.
 > Note: I am not a professional `C` programmer, so my `C` code will probably not follow best practices.
 
 {% action
-  Check out the final code for this post: https://github.com/meech-ward/smw_socket
+  Check out the final code for this post: <https://github.com/meech-ward/smw_socket>
 %}
 
 ## Unix Domain Socket Stream Server
