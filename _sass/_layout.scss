@@ -31,23 +31,6 @@ header {
   }
 }
 
-.profile-image-container {
-  max-width: 100%;
-  img {
-    width: 300px;
-    max-width: 100%;
-  }
-}
-
-.post {
-  ul {
-    li {
-      margin-left: 1.5rem;
-      list-style-type: circle;
-    }
-  }
-}
-
 main {
   p {
     text-overflow: ellipsis;
@@ -56,21 +39,5 @@ main {
        max-width: 100%;
        white-space: pre;
     }
-  }
-}
-
-$action-border-width: 4px;
-
-.action {
-  margin: 10px 0 10px -$action-border-width;
-  padding: 10px 0 10px 1.5rem;
-  width: 100%;
-  background-color: #e0f7fa;
-  font-weight: 300;
-  border-left: $action-border-width solid #00acc1;
-  border-top: $action-border-width solid #00acc1;
-  p, ul {
-    padding: 0;
-    margin: 0;
   }
 }
