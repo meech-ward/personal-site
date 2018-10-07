@@ -1,0 +1,16 @@
+.post {
+  ul {
+    li {
+      margin-left: 1.5rem;
+      list-style-type: circle;
+    }
+  }
+}
+
+.post__image {
+  max-width: 90%;
+  margin: auto;
+  &.--large {
+    max-height: 1000px;
+  }
+}
