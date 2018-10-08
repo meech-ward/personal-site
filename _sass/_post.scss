@@ -11,7 +11,7 @@
 
 
   &__content {
-    p, ul, ol, h2, h3, h4, h5, h6, img {
+    p, ul, ol, h2, h3, h4, h5, h6, .action {
       max-width: 1000px;
       width: 100%;
       margin-left: auto;
@@ -26,7 +26,7 @@
     @extend .center-align;
     max-width: 90%;
     img {
-      width: 100%;
+      max-width: 100%;
       border: 10px solid $theme-color;
     }
     &.--large {
