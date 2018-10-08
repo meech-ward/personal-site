@@ -1,21 +1,3 @@
-pre {
-  padding: 10px;
-  overflow-x: scroll;
-}
-
-p {
-  .highlighter-rouge {
-    font-size: inherit;
-    code {
-      // font-size: 1rem;
-      font-size: inherit;
-      //.highlight
-      background-color: #f8f8f8;
-      padding: 0.25em;
-    }
-  }
-}
-
 .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .cm {
@@ -224,4 +206,21 @@ p {
 }
 .highlight {
   background-color: #f8f8f8;
+  border-radius: 10px;
+}
+
+pre {
+  padding: 10px;
+  overflow-x: scroll;
+}
+
+.highlighter-rouge {
+  font-size: inherit;
+  code {
+    // font-size: 1rem;
+    font-size: inherit;
+    //.highlight
+    background-color: #f8f8f8;
+    padding: 0.25em;
+  }
 }

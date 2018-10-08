@@ -27,6 +27,7 @@
     max-width: 90%;
     img {
       width: 100%;
+      border: 10px solid $theme-color;
     }
     &.--large {
       max-height: 1000px;
