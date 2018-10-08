@@ -4,7 +4,7 @@ module Jekyll
   class PostImageLargeTag < MyLiquidTag
 
     def render(context)
-      return "<img class=\"post__image post__image--large\" src=\"/assets/images/posts/#{@text}\" />"
+      return "<p class=\"post__image post__image--large\"><img  src=\"/assets/images/posts/#{@text}\" /></p>"
     end
 
   end
