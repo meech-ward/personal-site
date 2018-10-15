@@ -190,7 +190,27 @@ It works!! It loaded the image into memory and rendered it to the window, but si
 
 {% post_image_large making-gui-app-in-c/app-1.png %}
 
-How do I fit the image on the screen?
+So how do I fit the image on the screen? Looks like there's a tutorial on stretching an image, so I'll just do the opposite of that 🤗. http://lazyfoo.net/tutorials/SDL/05_optimized_surface_loading_and_soft_stretching/index.php
 
+Looks like all you have to do is use `SDL_BlitScaled()` instead of `SDL_BlitSurface()`.
 
+```c
+// SDL_BlitSurface(image, NULL, screenSurface, NULL);
+SDL_Rect stretchRect = { .x = 0, .y = 0, .w = width, .h = height};
+SDL_BlitScaled(image, NULL, screenSurface, &stretchRect);
+```
 
+But I don't want to completely warp the image to fit it on the screen, I would rather scale it's aspect ratio down. So I need to figure out the size of the image. Maybe I can use the surface's `w` and `h` properties. <https://wiki.libsdl.org/SDL_Surface> 
+
+Compile and run:
+
+```shell
+make
+bin/app
+```
+
+{% post_image_large making-gui-app-in-c/app-2.png %}
+
+Yay, it works!! 🤗
+
+I mean, it's good enough.
