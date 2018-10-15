@@ -7,11 +7,9 @@
       list-style-type: circle;
     }
   }
-  
-
 
   &__content {
-    p, ul, ol, h2, h3, h4, h5, h6, .action {
+    p, ul, ol, h2, h3, h4, h5, h6, .action, blockquote {
       max-width: 1000px;
       width: 100%;
       margin-left: auto;

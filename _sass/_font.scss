@@ -44,25 +44,25 @@
 @media only screen and (min-width: 960px) { main p, main li { font-size: 1.68rem-0.2rem; } }
 @media only screen and (max-width: 360px) { main p, main li { font-size: 1.2rem-0.2rem; } }
 
-@media only screen and (min-width: 360px) { code { font-size: 1.2rem-0.5rem; } }
-@media only screen and (min-width: 390px) { code { font-size: 1.224rem-0.5rem; } }
-@media only screen and (min-width: 420px) { code { font-size: 1.248rem-0.5rem; } }
-@media only screen and (min-width: 450px) { code { font-size: 1.272rem-0.5rem; } }
-@media only screen and (min-width: 480px) { code { font-size: 1.296rem-0.5rem; } }
-@media only screen and (min-width: 510px) { code { font-size: 1.32rem-0.5rem; } }
-@media only screen and (min-width: 540px) { code { font-size: 1.344rem-0.5rem; } }
-@media only screen and (min-width: 570px) { code { font-size: 1.368rem-0.5rem; } }
-@media only screen and (min-width: 600px) { code { font-size: 1.392rem-0.5rem; } }
-@media only screen and (min-width: 630px) { code { font-size: 1.416rem-0.5rem; } }
-@media only screen and (min-width: 660px) { code { font-size: 1.44rem-0.5rem; } }
-@media only screen and (min-width: 690px) { code { font-size: 1.464rem-0.5rem; } }
-@media only screen and (min-width: 720px) { code { font-size: 1.488rem-0.5rem; } }
-@media only screen and (min-width: 750px) { code { font-size: 1.512rem-0.5rem; } }
-@media only screen and (min-width: 780px) { code { font-size: 1.536rem-0.5rem; } }
-@media only screen and (min-width: 810px) { code { font-size: 1.56rem-0.5rem; } }
-@media only screen and (min-width: 840px) { code { font-size: 1.584rem-0.5rem; } }
-@media only screen and (min-width: 870px) { code { font-size: 1.608rem-0.5rem; } }
-@media only screen and (min-width: 900px) { code { font-size: 1.632rem-0.5rem; } }
-@media only screen and (min-width: 930px) { code { font-size: 1.656rem-0.5rem; } }
-@media only screen and (min-width: 960px) { code { font-size: 1.68rem-0.5rem; } }
-@media only screen and (max-width: 360px) { code { font-size: 1.2rem-0.5rem; } }
+@media only screen and (min-width: 360px) { code, .smaller-text { font-size: 1.2rem-0.5rem; } }
+@media only screen and (min-width: 390px) { code, .smaller-text { font-size: 1.224rem-0.5rem; } }
+@media only screen and (min-width: 420px) { code, .smaller-text { font-size: 1.248rem-0.5rem; } }
+@media only screen and (min-width: 450px) { code, .smaller-text { font-size: 1.272rem-0.5rem; } }
+@media only screen and (min-width: 480px) { code, .smaller-text { font-size: 1.296rem-0.5rem; } }
+@media only screen and (min-width: 510px) { code, .smaller-text { font-size: 1.32rem-0.5rem; } }
+@media only screen and (min-width: 540px) { code, .smaller-text { font-size: 1.344rem-0.5rem; } }
+@media only screen and (min-width: 570px) { code, .smaller-text { font-size: 1.368rem-0.5rem; } }
+@media only screen and (min-width: 600px) { code, .smaller-text { font-size: 1.392rem-0.5rem; } }
+@media only screen and (min-width: 630px) { code, .smaller-text { font-size: 1.416rem-0.5rem; } }
+@media only screen and (min-width: 660px) { code, .smaller-text { font-size: 1.44rem-0.5rem; } }
+@media only screen and (min-width: 690px) { code, .smaller-text { font-size: 1.464rem-0.5rem; } }
+@media only screen and (min-width: 720px) { code, .smaller-text { font-size: 1.488rem-0.5rem; } }
+@media only screen and (min-width: 750px) { code, .smaller-text { font-size: 1.512rem-0.5rem; } }
+@media only screen and (min-width: 780px) { code, .smaller-text { font-size: 1.536rem-0.5rem; } }
+@media only screen and (min-width: 810px) { code, .smaller-text { font-size: 1.56rem-0.5rem; } }
+@media only screen and (min-width: 840px) { code, .smaller-text { font-size: 1.584rem-0.5rem; } }
+@media only screen and (min-width: 870px) { code, .smaller-text { font-size: 1.608rem-0.5rem; } }
+@media only screen and (min-width: 900px) { code, .smaller-text { font-size: 1.632rem-0.5rem; } }
+@media only screen and (min-width: 930px) { code, .smaller-text { font-size: 1.656rem-0.5rem; } }
+@media only screen and (min-width: 960px) { code, .smaller-text { font-size: 1.68rem-0.5rem; } }
+@media only screen and (max-width: 360px) { code, .smaller-text { font-size: 1.2rem-0.5rem; } }
