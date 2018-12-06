@@ -222,5 +222,10 @@ pre {
     //.highlight
     background-color: #f8f8f8;
     padding: 0.25em;
+
+  }
+  &.deleted-code {
+    text-decoration: line-through;
+    color: darkred;
   }
 }
