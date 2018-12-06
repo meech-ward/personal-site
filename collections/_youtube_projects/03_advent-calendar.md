@@ -1,6 +1,8 @@
 ---
 layout: youtube-post
+date: 2018-12-06 12:00:00 -0700
 title: "Razor Blade Advent Calendar"
+title-short: "Razor Blade Advent Calendar"
 slug: "advent-calendar-2018"
 ---
 

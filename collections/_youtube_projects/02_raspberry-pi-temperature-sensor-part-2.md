@@ -1,6 +1,8 @@
 ---
 layout: youtube-post
+date: 2018-07-15 12:00:00 -0700
 title: "Let's Build a Temperature Sensor with a Raspberry Pi Part 2"
+title-short: "Raspberry Pi Temperature Sensor - Part 2"
 slug: "raspberry-pi-temperature-sensor-part-2"
 ---
 
