@@ -1,5 +1,7 @@
 <ul class="youtube-projects post-list">
-  {% for post in site.youtube_projects %}
+
+  {% assign sorted = (site.youtube_projects | sort: 'date') | reverse %}
+  {% for post in sorted %}
 
   {% if post.archived != true %}
 
