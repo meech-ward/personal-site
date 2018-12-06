@@ -11,7 +11,7 @@ module Jekyll
     end
 
     def renderMarkdown(markdown)
-      Kramdown::Document.new(@text).to_html
+      Kramdown::Document.new(markdown).to_html
     end
   end
 end
