@@ -77,16 +77,16 @@
 
 <script>
   window.pageClass = "";
-</script> <main class="page-content container">
+</script> <main class="page-content container container--outer">
       <div class="wrapper">
         <article class="post youtube-post">
 
-  <header class="post-header">
-    <h1 class="post-title hide-on-small-only">Let&#39;s Build a Temperature Sensor with a Raspberry Pi - Part 1</h1>
-    <h1 class="post-title hide-on-med-and-up">Raspberry Pi Temperature Sensor - Part 1</h1>
+  <header class="post__header container container--inner">
+    <h1 class="post__title hide-on-small-only">Let&#39;s Build a Temperature Sensor with a Raspberry Pi - Part 1</h1>
+    <h1 class="post__title hide-on-med-and-up">Raspberry Pi Temperature Sensor - Part 1</h1>
   </header>
 
-  <div class="post-content">
+  <div class="post__content">
     <p>This is a two part project. In part one, we connected a raspberry pi to a temperature &amp; humidity sensor so that we could read the current temperature. In <a href="/youtube_projects/02_raspberry-pi-temperature-sensor-part-2.html">Part 2</a>, we setup the pi to emit the temperature and humidity data using BLE. We also made an iPhone app that can read that data.</p>
 
 <h2 id="youtube-video">YouTube Video</h2>
@@ -104,10 +104,10 @@
 
 <h3 id="steps">Steps</h3>
 
-<div class="action"><p>Install <a href="https://www.raspberrypi.org/downloads/raspbian/">raspbian</a> onto the raspberry pi.</p>
+<div class="callout callout--action"><p>Install <a href="https://www.raspberrypi.org/downloads/raspbian/">raspbian</a> onto the raspberry pi.</p>
 </div>
 
-<div class="action"><p>Wire up the pi to the sensor.</p>
+<div class="callout callout--action"><p>Wire up the pi to the sensor.</p>
 </div>
 
 <p>You can use the diagram and instructions on this page <a href="https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor">https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor</a>.</p>
@@ -120,28 +120,28 @@
 
 <p><a href="https://www.raspberrypi.org/documentation/usage/gpio/">Raspberry pi pins</a></p>
 
-<div class="action"><p>Plug in the pi, and connect to it using ssh.</p>
+<div class="callout callout--action"><p>Plug in the pi, and connect to it using ssh.</p>
 </div>
 
 <p>I used the following link to do this before I plugged in the pi: <a href="https://raspberrypi.stackexchange.com/questions/10251/prepare-sd-card-for-wifi-on-headless-pi">Prepare SD card for Wifi on Headless Pi</a>.</p>
 
 <p>Here’s the official documentation on how to connect to a pi using ssh: <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/">https://www.raspberrypi.org/documentation/remote-access/ssh/</a></p>
 
-<div class="action"><p>Install node on the pi.</p>
+<div class="callout callout--action"><p>Install node on the pi.</p>
 </div>
 
 <p>You can use <a href="https://github.com/creationix/nvm">nvm Node Version Manager</a> to do this.</p>
 
 <p>You might need to run <code class="highlighter-rouge">source ~/.bashrc</code> before nvm works.</p>
 
-<div class="action"><p>Make sure node is working on the pi.</p>
+<div class="callout callout--action"><p>Make sure node is working on the pi.</p>
 </div>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> cowsay
 cowsay hi
 </code></pre></div></div>
 
-<div class="action"><p>Do the setup for <a href="https://www.npmjs.com/package/node-dht-sensor"><code>node-dht-sensor</code></a></p>
+<div class="callout callout--action"><p>Do the setup for <a href="https://www.npmjs.com/package/node-dht-sensor"><code>node-dht-sensor</code></a></p>
 </div>
 
 <p>Before you can use the <code class="highlighter-rouge">node-dht-sensor</code> module, you have to do some setup. You can follow the instructions on npm, but here’s what I did. On the pi, run the following code:</p>
@@ -155,7 +155,7 @@ make
 <span class="nb">sudo </span>make <span class="nb">install</span>
 </code></pre></div></div>
 
-<div class="action"><p>Make the app and write the code.</p>
+<div class="callout callout--action"><p>Make the app and write the code.</p>
 </div>
 
 <ul>
@@ -178,7 +178,7 @@ make
 <span class="p">});</span>
 </code></pre></div></div>
 
-<div class="action"><p>Run the app.</p>
+<div class="callout callout--action"><p>Run the app.</p>
 </div>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node app.js

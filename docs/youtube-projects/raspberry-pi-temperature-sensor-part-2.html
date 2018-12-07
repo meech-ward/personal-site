@@ -77,16 +77,16 @@
 
 <script>
   window.pageClass = "";
-</script> <main class="page-content container">
+</script> <main class="page-content container container--outer">
       <div class="wrapper">
         <article class="post youtube-post">
 
-  <header class="post-header">
-    <h1 class="post-title hide-on-small-only">Let&#39;s Build a Temperature Sensor with a Raspberry Pi Part 2</h1>
-    <h1 class="post-title hide-on-med-and-up"></h1>
+  <header class="post__header container container--inner">
+    <h1 class="post__title hide-on-small-only">Let&#39;s Build a Temperature Sensor with a Raspberry Pi Part 2</h1>
+    <h1 class="post__title hide-on-med-and-up">Raspberry Pi Temperature Sensor - Part 2</h1>
   </header>
 
-  <div class="post-content">
+  <div class="post__content">
     <p class="flow-text">This is part two of the two part temperature sensor project. Make sure you check out <a href="/youtube_projects/01_raspberry-pi-temperature-sensor-part-1.html">Part 1</a> first.</p>
 
 <p class="flow-text">In part 2, we setup the pi to emit the temperature and humidity data using BLE. We also made an iPhone app that can read that data.</p>
@@ -99,7 +99,7 @@
 
 <h3 id="steps">Steps</h3>
 
-<div class="action"><p>First, follow the instructions in <a href="/youtube_projects/01_raspberry-pi-temperature-sensor-part-1.html">Part 1</a></p>
+<div class="callout callout--action"><p>First, follow the instructions in <a href="/youtube_projects/01_raspberry-pi-temperature-sensor-part-1.html">Part 1</a></p>
 </div>
 
 <p>The raspberry pi will be acting as the bluetooth peripheral (the thing advertising it’s data). Later on, we will setup the iPhone app which acts as the central device (the thing that reads data from the peripheral)</p>
@@ -108,19 +108,19 @@
 
 <p>I used <a href="https://github.com/noble/bleno">bleno</a>, a Node.js module for implementing BLE (Bluetooth Low Energy) peripherals. Before you can use bleno, you need to install some prerequisite software.</p>
 
-<div class="action"><p>Use the following command to install the bleno system prerequisites on your raspberry pi:</p>
+<div class="callout callout--action"><p>Use the following command to install the bleno system prerequisites on your raspberry pi:</p>
 </div>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>bluetooth bluez libbluetooth-dev libudev-dev
 </code></pre></div></div>
 
-<div class="action"><p>Add bleno to your project.</p>
+<div class="callout callout--action"><p>Add bleno to your project.</p>
 </div>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>bleno
 </code></pre></div></div>
 
-<div class="action"><p>Add the following code to your project. Probably in a new file, but that’s up to you:</p>
+<div class="callout callout--action"><p>Add the following code to your project. Probably in a new file, but that’s up to you:</p>
 </div>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">bleno</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bleno'</span><span class="p">);</span>
@@ -163,7 +163,7 @@
   <li><a href="https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile">GAP Data Types</a></li>
 </ul>
 
-<div class="action"><p>Add the following function to your project:</p>
+<div class="callout callout--action"><p>Add the following function to your project:</p>
 </div>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
@@ -233,7 +233,7 @@ humidity: 8 byte little endian double
 
 <p>To interact with other ble devices from an iOS app, you will have to use the <code class="highlighter-rouge">CoreBluetooth</code> framework.</p>
 
-<div class="action"><p>Create a new <code>TemperatureDetector</code> class, and add the following code:</p>
+<div class="callout callout--action"><p>Create a new <code>TemperatureDetector</code> class, and add the following code:</p>
 </div>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Foundation</span>

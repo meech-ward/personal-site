@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124454815-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-124454815-2');
+  </script>
+
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="/assets/js/materialize.min.js"></script>
+  <script src="/assets/js/site.js"></script>
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+  <title>Razor Blade Advent Calendar</title>
+</head>
+<body><header>
+  <nav>
+    <div class="nav-wrapper cyan darken-1">
+        <div class="container">
+          <a href="/" class="brand-logo hide-on-small-only">Sam Meech-Ward</a>
+          <a href="/" class="brand-logo hide-on-med-and-up">Sam</a>
+          <ul class="right hide-on-med-and-down">
+              <li class="posts-page-nav-link"><a href="/posts">All Posts</a></li>
+              <li class="youtube-projects-page-nav-link"><a href="/youtube-projects">Youtube Projects</a></li>
+              <li class="projects-page-nav-link"><a href="/projects">Other Projects</a></li>
+              <!-- <li class="about-page-nav-link"><a href="/about">About</a></li> -->
+          </ul>
+        </div>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger right waves-effect waves-light btn-flat"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</header>
+
+<ul class="sidenav" id="mobile-nav">
+  <li><nav><div class="nav-header cyan darken-1 nav-wrapper">
+      <div class="container">
+          <a href="/" class="brand-logo center">Sam Meech-Ward</a>
+          <!-- <a href="/" class="brand-logo hide-on-med-and-up">Sam</a> -->
+        </div>
+    <!-- <p class="center"><a href="/">Sam Meech-Ward</a></p> -->
+  </div></nav></li>
+  <li class="posts-page-nav-link"><a href="/posts">All Posts</a></li>
+  <li class="youtube-projects-page-nav-link"><a href="/youtube-projects">Youtube Projects</a></li>
+  <li class="projects-page-nav-link"><a href="/projects">Other Projects</a></li>
+  <!-- <li class="blog-page-nav-link"><a href="/blog">Blog</a></li>
+  <li class="about-page-nav-link"><a href="/about">About</a></li> -->
+</ul>
+
+<script>
+  window.pageClass = "";
+</script> <main class="page-content container container--outer">
+      <div class="wrapper">
+        <article class="post youtube-post">
+
+  <header class="post__header container container--inner">
+    <h1 class="post__title hide-on-small-only">Razor Blade Advent Calendar</h1>
+    <h1 class="post__title hide-on-med-and-up">Razor Blade Advent Calendar</h1>
+  </header>
+
+  <div class="post__content">
+    <p>Problem: Build an advent calendar that automatically unlocks candy each day.
+Solution: Use razor blades… Obviously!</p>
+
+<p>This year, I decided to make my girlfriend April an advent calendar full of her favorite candy. But I had to make sure that she wouldn’t be able to just open up a door and take candy whenever she wanted. I needed the calendar to lock each door and only unlock one door each day in December.</p>
+
+<p>My semi-successful solution was to tie each door to the calendar using a peice of string. Then I connected a razor blade to some CNC parts and had the stepper motor move the motor and cut the string, releasing the door for that day.</p>
+
+<p class="post__image post__image--large"><img src="/assets/images/posts/advent-calendar-2018/calendar_1.png " /></p>
+
+<h2 id="youtube-video">YouTube Video</h2>
+
+<iframe class="youtube-video" width="100%" height="400" src="https://www.youtube.com/embed/" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+
+<h2 id="how-to-build">How To Build</h2>
+
+<h3 id="required-hardware">Required Hardware</h3>
+
+<ul>
+  <li><a href="https://www.ebay.ca/itm/282789077942">Arduino UNO</a></li>
+  <li><a href="https://www.ebay.com/itm/221921771119">A4988 Stepper Motor Driver</a></li>
+  <li><a href="https://www.ebay.ca/itm/131622995166">NEMA 17 Stepper motor</a></li>
+  <li><a href="https://www.ebay.ca/itm/131904158434">CNC Stepper Motor Coupler Connector</a></li>
+  <li><a href="https://www.ebay.ca/itm/182887854654">T8 500mm Lead Screw Rod W/Nut Shaft Coupling Mounting Support for 3d Printer Set</a></li>
+  <li><a href="https://www.homedepot.ca/en/home/p.standard-hardboard-18-x-4-x-8.1000167412.html">Lots of hardboard</a></li>
+</ul>
+
+<h3 id="steps">Steps</h3>
+
+<div class="callout callout--action"><p>Make the calendar strurcture.</p>
+</div>
+
+<p>First I cut out a bunch of wood to make the calendar structure. it was supposed to have 26 slots for candy (25 days in december + one bonus day when I showed off the calendar). At the end of the project, only 22 were used because the CNC parts got in the way.</p>
+
+<p class="post__image post__image--large"><img src="/assets/images/posts/advent-calendar-2018/calendar_structure_1.jpg " /></p>
+
+<div class="callout callout--action"><p>Attatch the CNC parts to razor blades</p>
+</div>
+
+<p>I didn’t want to try controlling 25 separate locks, I wanted it to be simpler than that. I had purchased the following peices to make a small laser cutter, but haven’t gotten around to actually making that yet:</p>
+
+<ul>
+  <li><a href="https://www.ebay.ca/itm/131622995166">NEMA 17 Stepper motor</a></li>
+  <li><a href="https://www.ebay.ca/itm/131904158434">CNC Stepper Motor Coupler Connector</a></li>
+</ul>
+
+<p>So I attached razor blades to these pieces, with hot glue of course, so that I could just control the stepper motors that would cut some string holding on the calendar doors.</p>
+
+<p class="post__image post__image--large"><img src="/assets/images/posts/advent-calendar-2018/razor_glue.jpg " /></p>
+
+<p>I used a cheap plastic rail that I found at home depot, and some blank circuit boards hot glued to the nut. This worked way better than expected to guide the nut in a straight line.</p>
+
+<div class="callout callout--action"><p>Wire up an arduino to the stepper motors.</p>
+</div>
+
+<p>With the calendar setup and the razor blades in place, I needed to put together the circuit to control the motors from my arduino. I purchased some <a href="https://www.ebay.com/itm/221921771119">A4988 stepper motor drivers</a> and used the following blog post to help me wire everything and write the first piece of code. https://howtomechatronics.com/tutorials/arduino/how-to-control-stepper-motor-with-a4988-driver-and-arduino/</p>
+
+<p class="post__image post__image--large"><img src="/assets/images/posts/advent-calendar-2018/circuit.jpg " /></p>
+
+<div class="callout callout--action"><p>Program the arduino</p>
+</div>
+
+<p>With the calendar setup and the motors and razor blades in place, I needed the code to actually make this thing work.</p>
+
+<p>One big problem I faced with this, is that the arduino won’t be able to know the current date and time after it’s been powered down. So I needed a way of telling the arduino what the current time is, every time it gets turned on / plugged in.</p>
+
+<p>My original plan was to use an arduino pro mini to keep track of time that could be connected to a 9v battery. So even when the calendar was un plugged, the pro mini would continue running. Then when the arduino UNO needed to know the time, it would just ask the pro mini.</p>
+
+<p>After an hour of failing to get the <a href="https://www.arduino.cc/en/Reference/SoftwareSerial">SoftwareSerial</a> library to work, I decided to give up and just use my laptop to sync up the date and time to the arduino. The consequence of this is that every time we unplug the calendar, the arduino needs to be plugged into a computer that can run the following script to sync the date: <a href="https://github.com/Sam-Meech-Ward/Calendar_Computer_Serial">Computer Serial</a> code.</p>
+
+<p>All of the code for the arduino can be found on github: https://github.com/Sam-Meech-Ward/Advent_Calendar_2018</p>
+
+<div class="callout callout--action"><p>Add candy and tie up all of the doors</p>
+</div>
+
+<p>Now that the calendar is pretty much completely setup, the only thing left to do is add candy and tie up the doors.</p>
+
+<p>April’s favorite candies right now are the herbaland gummy candies, so I bought a bunch of those. To mix things up, I also got some lint chocolates and a fidget spinner.</p>
+
+<p class="post__image post__image--large"><img src="/assets/images/posts/advent-calendar-2018/candy.jpg " /></p>
+
+<p>Putting the candy in the calendar was easy, tying up all of the doors was a long and mundane task. I could never be a sewer, I don’t have the patience to thread anything.</p>
+
+<div class="callout callout--action"><p>Give the advent calendar to a loved one</p>
+</div>
+
+<p>Because of bad string tying skills, a limited amount of time until december 1st, and an overall lack of planning and experience; the calendar ended up looking like this:</p>
+
+<p class="post__image post__image--large"><img src="/assets/images/posts/advent-calendar-2018/finished.jpg " /></p>
+
+<p>But at least it works… kind of.</p>
+
+<p>That’s why you give this calendar to a loved one, they’re the ones that appretiate “home made” gifts.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>This calendar is kind of a perfect visualization of any piece of software ever built. Most software engineers start out with a vision for something that’s going to look great and work great, and  end up with code that looks and functions like this calendar.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="page-footer cyan darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text"></h5>
+          <p class="grey-text text-lighten-4"></p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/sam-meech-ward-a485ab1a/">Linkedin</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://gist.github.com/meech-ward/">Github</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/channel/UC6aTLuI_j4-0wiDSzmaPctQ">YouTube</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://docs.google.com/document/d/1nAM8z5uRtp9SLbEPHURWUCaIKBDPAIv4CAqXQBPQr7M/edit?usp=sharing">Resume</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://lighthouselabs.ca/blog/teacher-feature-sam-meech-ward">Teacher Feature</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://lighthouselabs.ca/blog/farts-and-starts-the-story-of-sam-meech-ward-s-first-successful-app">Farts and Starts</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Sam Meech-Ward
+      <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+      </div>
+    </div>
+  </footer></body>
+
+</html>
