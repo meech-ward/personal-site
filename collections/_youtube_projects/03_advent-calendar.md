@@ -1,12 +1,12 @@
 ---
 layout: youtube-post
-date: 2018-12-06 12:00:00 -0700
+date: 2018-12-05 12:00:00 -0700
 title: "Razor Blade Advent Calendar"
 title-short: "Razor Blade Advent Calendar"
 slug: "advent-calendar-2018"
 ---
 
-Problem: Build an advent calendar that automatically unlocks candy each day.
+Problem: Build an advent calendar that automatically unlocks candy each day.  
 Solution: Use razor blades... Obviously!
 
 This year, I decided to make my girlfriend April an advent calendar full of her favorite candy. But I had to make sure that she wouldn't be able to just open up a door and take candy whenever she wanted. I needed the calendar to lock each door and only unlock one door each day in December.
