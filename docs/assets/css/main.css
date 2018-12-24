@@ -7527,3 +7527,18 @@ input[type=range] + .thumb {
   font-style: italic; }
 .callout--sidenote {
   font-style: italic; }
+
+body {
+  background-color: #2296f5;
+  font-family: 'Roboto';
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px; }
+
+.page-footer {
+  background-color: #2296f5; }
+
+.page-footer .footer-copyright {
+  background-color: #2296f5; }
+
+nav .nav-wrapper {
+  background-color: #2296f5; }
