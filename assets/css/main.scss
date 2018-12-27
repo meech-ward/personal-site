@@ -11,22 +11,3 @@
 @import 'profile';
 @import 'tags';
 @import 'callouts';
-
-body {
-    background-color: $aprils-cool-colour;
-    font-family: 'Roboto';
-    color: white;
-    text-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px;
-}
-
-.page-footer {
-    background-color: $aprils-cool-colour;
-}
-
-.page-footer .footer-copyright {
-    background-color: $aprils-cool-colour;
-}
-
-nav .nav-wrapper  {
-    background-color: $aprils-cool-colour;
-}

@@ -2,10 +2,22 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: 'Roboto';
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px;
 }
 
 main {
   flex: 1 0 auto;
+  width: 100%;
+  p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    a {
+       max-width: 100%;
+       white-space: pre;
+    }
+  }
 }
 
 .container {
@@ -19,8 +31,18 @@ main {
   }
 }
 
+.page {
+  width: 100%;
+}
+
+// Header
+
 header {
   nav {
+    color: white;
+    .nav-wrapper  {
+      background-color: $aprils-cool-colour;
+    }
     .sidenav-trigger {
       margin: 0;
     }
@@ -38,13 +60,29 @@ header {
   }
 }
 
-main {
-  p {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    a {
-       max-width: 100%;
-       white-space: pre;
-    }
-  }
+
+// Footer
+
+.page-footer {
+  background-color: $aprils-cool-colour;
 }
+
+.page-footer .footer-copyright {
+  background-color: $aprils-cool-colour;
+}
+
+// Sections
+
+.first-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px);
+  width: 100%;
+  background-color: $aprils-cool-colour;
+}
+.second-section {
+  color: black;
+  margin-top: 100px;
+  margin-bottom: 100px;
+ }

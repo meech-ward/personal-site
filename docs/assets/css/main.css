@@ -6431,10 +6431,20 @@ input[type=range].focused:focus:not(.active)::-ms-thumb {
 body {
   display: flex;
   min-height: 100vh;
-  flex-direction: column; }
+  flex-direction: column;
+  font-family: 'Roboto';
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px; }
 
 main {
-  flex: 1 0 auto; }
+  flex: 1 0 auto;
+  width: 100%; }
+  main p {
+    text-overflow: ellipsis;
+    overflow: hidden; }
+    main p a {
+      max-width: 100%;
+      white-space: pre; }
 
 .container {
   max-width: 1000px; }
@@ -6444,20 +6454,39 @@ main {
     max-width: 1000px;
     width: 100%; }
 
-header nav .sidenav-trigger {
-  margin: 0; }
+.page {
+  width: 100%; }
+
+header nav {
+  color: white; }
+  header nav .nav-wrapper {
+    background-color: #2296f5; }
+  header nav .sidenav-trigger {
+    margin: 0; }
 
 #mobile-nav .nav-header .brand-logo {
   font-size: 1rem; }
 #mobile-nav .nav-header p {
   margin: 0; }
 
-main p {
-  text-overflow: ellipsis;
-  overflow: hidden; }
-  main p a {
-    max-width: 100%;
-    white-space: pre; }
+.page-footer {
+  background-color: #2296f5; }
+
+.page-footer .footer-copyright {
+  background-color: #2296f5; }
+
+.first-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px);
+  width: 100%;
+  background-color: #2296f5; }
+
+.second-section {
+  color: black;
+  margin-top: 100px;
+  margin-bottom: 100px; }
 
 h1 {
   font-size: 2.92rem;
@@ -7527,18 +7556,3 @@ input[type=range] + .thumb {
   font-style: italic; }
 .callout--sidenote {
   font-style: italic; }
-
-body {
-  background-color: #2296f5;
-  font-family: 'Roboto';
-  color: white;
-  text-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px; }
-
-.page-footer {
-  background-color: #2296f5; }
-
-.page-footer .footer-copyright {
-  background-color: #2296f5; }
-
-nav .nav-wrapper {
-  background-color: #2296f5; }
