@@ -71,13 +71,22 @@ a {
 a:hover {
   opacity: 1; }
 
-a.btn {
+.disabled {
+  opacity: 0.5; }
+
+form p {
+  width: 100%;
+  text-align: center;
+  font-size: 100px; }
+
+.btn {
   color: white;
   border-radius: 4px;
   text-transform: uppercase;
   background-color: #2196F3;
   font-weight: 800;
-  text-align: center; }
+  text-align: center;
+  font-size: 100%; }
 
 hr {
   width: 150px;
@@ -293,7 +302,7 @@ opacity: 0.75;
   font: normal 28px 'Open Sans', sans-serif;
   margin-bottom: 40px; }
 
-.hero a.btn {
+.hero .btn {
   padding: 20px 46px; }
 
 @media (max-width: 800px) {
@@ -306,7 +315,7 @@ opacity: 0.75;
   .hero h3 {
     font-size: 24px; }
 
-  .hero a.btn {
+  .hero .btn {
     padding: 15px 40px; } }
 .оur-work {
   background-color: white; }
